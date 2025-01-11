@@ -1,0 +1,45 @@
+const axios = require("axios");
+
+let query = "hiraku";
+
+//creating object to save data to
+// let game = {
+//     title: "n/a",
+//     img: "n/a",
+//     esrb: "n/a",
+//     rating: "n/a",
+// }
+
+//geting json from API
+const getGame = async (id = 0) => {
+    try {
+        const response = await axios.get(`https://jisho.org/search/${query}`);
+        const data = response.data.results[id];
+        if (typeof (data) !== "undefined") return data;
+        throw "Nothing found!"
+    } catch (err) {
+        throw ("API ERROR -> " + err)
+    }
+}
+
+//extracing data and saving to object
+function getData(id) {
+    getGame(id)
+        .then((data) => {
+            //saving to variable
+            try {
+                game.title = data.name;
+                game.img = data.background_image;
+                game.esrb = data.esrb_rating.name;
+                game.rating = data.rating;
+            } catch {
+                console.log("Defaulting to n/a...")
+            }
+
+        })
+        .catch((err) => {
+            console.log("ERROR:", err)
+        })
+}
+
+getData()

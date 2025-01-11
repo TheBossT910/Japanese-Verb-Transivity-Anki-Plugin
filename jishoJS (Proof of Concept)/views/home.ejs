@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <title>Game Scraper</title>
+</head>
+
+<body>
+    <h1>Game Scraper!!!!</h1>
+    <h2>
+        <%= gameInfo.productName %>
+    </h2>
+    <h2>DEFAULT VALUE OF CURRENCY IS IN USD!</h2>
+
+    <!-- Showing gameInfo -->
+    <ul>
+        <!-- grabs the key in the object and uses that to tell gameInfo what value from that associated key to display -->
+        <% for (let info of Object.keys(gameInfo)) { %>
+            <li>
+                <%= `${info}: ${gameInfo[info]}` %>
+            </li>
+            <% } %>
+                <li>
+                    <!-- the alt is actually displaying the text, but is cut-off for some reason -->
+                    <img src=<%=gameInfo.imageUrl %> alt=<%= "Image of " + gameInfo.productName %>>
+                </li>
+    </ul>
+
+    <!-- Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
